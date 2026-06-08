@@ -8,6 +8,8 @@ import {serverUrl} from '../App.jsx'
 import axios from 'axios'
 import { signInWithPopup } from 'firebase/auth'
 import { auth, provider } from '../utils/firebase';
+import { useDispatch } from 'react-redux'
+import { setUserData } from '../store/userSlice.js'
 
 
 const steps = [
@@ -19,6 +21,7 @@ const steps = [
 ]
 function Auth({ onClose }) {
   const [active, setActive] = useState(0)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const id = setInterval(() => setActive(s => (s + 1) % steps.length), 2400)
@@ -34,7 +37,8 @@ function Auth({ onClose }) {
       let name = User.displayName
       let email = User.email
       const result = await axios.post(serverUrl + "/api/v1/auth/google", { name, email }, { withCredentials: true })
-      console.log(result.data)
+      dispatch(setUserData(result.data))
+      onClose()
 
     } catch (error) {
       console.log(error)
