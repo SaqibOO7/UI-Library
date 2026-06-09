@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { setUserData } from './store/userSlice'
+import Generate from './pages/Generate'
 
 export const serverUrl = 'http://localhost:8000'
 
@@ -12,6 +13,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path='/' element={<Home />} />
+      <Route path='/generate' element={<Generate />} />
     </Route>
   )
 )

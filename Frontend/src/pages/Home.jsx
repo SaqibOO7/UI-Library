@@ -8,7 +8,7 @@ import axios from 'axios'
 import { HiSparkles } from 'react-icons/hi2'
 import {
   TbArrowRight, TbBrandNpm, TbCode, TbLayout, TbAdjustments, TbPlayerPlay, TbCopy,
-  TbCheck, TbMenu2, TbLogout, TbComponents,TbX
+  TbCheck, TbMenu2, TbLogout, TbComponents, TbX
 } from 'react-icons/tb'
 import { useNavigate } from 'react-router-dom'
 import { setUserData } from '../store/userSlice'
@@ -16,7 +16,21 @@ import { setUserData } from '../store/userSlice'
 
 
 
+const features = [
+  { icon: TbLayout, title: "Prebuilt UI Components", text: "Install VirtualUI and use ready-made, production-grade components instantly." },
+  { icon: HiSparkles, title: "AI Component Generator", text: "Describe your UI in plain English and generate React components in seconds." },
+  { icon: TbAdjustments, title: "Customizable Props", text: "Modify component props and preview changes in real-time without rebuilding." },
+  { icon: TbCode, title: "Clean JSX Code", text: "Copy production-ready JSX directly into your project – zero boilerplate." },
+  { icon: TbBrandNpm, title: "NPM Library", text: "Import VirtualUI components with a simple npm install command." },
+  { icon: TbPlayerPlay, title: "Live Preview", text: "Instantly preview AI-generated components before exporting your code." },
+];
 
+const steps = [
+  { n: "01", title: "Install Library", text: "npm install custombuild-ui-library to access all prebuilt UI components." },
+  { n: "02", title: "Use Components", text: "Import and customize with props for any design requirement." },
+  { n: "03", title: "Generate with AI", text: "Describe your UI and let AI build the component for you." },
+  { n: "04", title: "Copy & Use", text: "Paste the clean JSX code straight into your project." },
+];
 
 function Home() {
   const [showAuth, setShowAuth] = useState(false)
@@ -328,9 +342,9 @@ function Home() {
           p-4 sm:p-5 text-left shadow-[0_30px_60px_rgba(0,0,0,0.4)] backdrop-blur-sm overflow-x-auto'
         >
           <div className='flex items-center gap-1.5 mb-4'>
-            <div className='w-2.5 h-2.5 rounded-full bg-[#ff5f57]'/>
-            <div className='w-2.5 h-2.5 rounded-full bg-[#febc2e]'/>
-            <div className='w-2.5 h-2.5 rounded-full bg-[#28c840]'/>
+            <div className='w-2.5 h-2.5 rounded-full bg-[#ff5f57]' />
+            <div className='w-2.5 h-2.5 rounded-full bg-[#febc2e]' />
+            <div className='w-2.5 h-2.5 rounded-full bg-[#28c840]' />
             <span className='ml-3 text-[11px] text-white/20 font-mono'>App.jsx</span>
           </div>
           <div className='font-mono text-[11px] sm:text-[12.5px] leading-6 space-y-0.5 min-w-[280px]'>
@@ -340,7 +354,7 @@ function Home() {
             </p>
             <p>{" "}</p>
             <p><span className='text-[#3be8ff]/60'>export default</span> <span className='text-[#ffd580]/80'>App</span><span className='text-white/50'>() {"{"}</span></p>
-        
+
             <p>
               <span className='text-white/30'>{"return ("}</span>
             </p>
@@ -348,12 +362,210 @@ function Home() {
 
             <p><span className='text-white/30'>{"   <"}</span><span className='text-[#3be8ff]/70'>Button</span> <span className='text-[#3be8ff]/60'>text</span><span className='text-white/30'>{"="}</span><span className='text-[#aaff80]/70'>{"\"hello\""}</span> <span className='text-white/30'>{"/>"}</span></p>
 
-            <p><span></span><span></span> <span></span></p>
+            <p><span className='text-white/30'>{"    </"}</span><span className='text-[#3be8ff]/70'>Card</span> <span className='text-white/30'>{">"}</span></p>
+
+            <p><span className='text-white/30'>{" );"}</span></p>
+            <p><span className='text-white/50'>{"}"}</span></p>
           </div>
 
         </motion.div>
-
       </section>
+
+
+      <section className='max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24'>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55 }}
+          className='text-center mb-10 sm:mb-14'
+        >
+          <p className='text-[10px] font-semibold tracking-[3px] uppercase text-[#3be8ff]/60 mb-3'>
+            What's inside
+          </p>
+
+          <h2 className='text-3xl sm:text-4xl font-bold tracking-tight' style={{ fontFamily: "'Syne', sans-serif" }}>
+            Everything you need
+          </h2>
+        </motion.div>
+
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+          {features.map((item, index) => (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.07, duration: 0.55 }}
+              className='group p-5 sm:p-6 rounded-2xl border border-white/[0.07] bg-white/[0.02]
+              hover:bg-[#3be8ff]/20 transition-all duration-300'
+            >
+              <div className='w-10 h-10 rounded-xl bg-[#3be8ff]/[0.08] border border-[#3be8ff]/15
+              flex items-center justify-center mb-4 group-hover:bg-[#3be8ff]/15 transition-colors'>
+                <item.icon size={18} className='text-[#3be8ff]' />
+              </div>
+
+              <h3 className='font-semibold text-white/90 mb-2 text-[15px]'>
+                {item.title}
+              </h3>
+
+              <p className='text-sm text-white/45 leading-relaxed'>{item.text}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+
+      <section className='max-w-5xl mx-auto px-4 sm:px-6 py-16 sm:py-24'>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55 }}
+          className='text-center mb-10 sm:mb-14'
+        >
+          <p className='text-[10px] font-semibold tracking-[3px] uppercase text-[#3be8ff]/60 mb-3'>
+            Simple process
+          </p>
+
+          <h2 className='text-3xl sm:text-4xl font-bold tracking-tight' style={{ fontFamily: "'Syne', sans-serif" }}>
+            How it works
+          </h2>
+        </motion.div>
+
+        <div className='relative grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8'>
+          <div className='hidden lg:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r
+          from-transparent via-[#3be8ff]/20 to-transparent'/>
+          {steps.map((item, index) => (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.07, duration: 0.55 }}
+              key={index}
+              className='relative text-center group'
+            >
+              <div className='w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-4 sm:mb-5 rounded-2xl bg-gradient-to-br
+              from-[#0e2528] to-[#071518] border border-[#3be8ff]/20 flex flex-col items-center
+              justify-center group-hover:border-[#3be8ff]/40 group-hover:shadow-[0_0_20px_rgba(59, 232, 255, 0.1)]
+              transition-all duration-300'>
+                <span className='text-[9px] text-[#3be8ff]/60 font-bold tracking-widest'>{item.n}</span>
+              </div>
+              <h3 className='font-semibold text-white/90 mb-2 text-[13px] sm:text-[14px]'>{item.title}</h3>
+              <p className='text-[11px] sm:text-xs text-white/40 leading-relaxed'>{item.text}</p>
+
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+
+      <section className='max-w-5xl mx-auto px-4 sm:px-6 pb-16 sm:pb-24'>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className='relative rounded-2xl sm:rounded-3xl border border-[#3be8ff]/15 bg-gradient-to-br from-[#071518]
+          to-[#040f12] p-8 sm:p-14 text-center overflow-hidden'
+        >
+          <div className='absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%, rgba(59, 232, 255, 0.8)_0%, transparent_60%)]
+          pointer-events-none'/>
+
+          <div className='relative z-10'>
+            <p className='text-[10px] font-semibold tracking-[3px] uppercase text-[#3be8ff]/60 mb-3 sm:mb-4'>
+              Start building
+            </p>
+
+            <h3 className='text-3xl sm:text-4xl font-bold tracking-tight mb-3 sm:mb-4' style={{ fontFamily: "'Syne', sans-serif" }}>
+              Ready to generate <br /> your new component?
+            </h3>
+
+            {userData ? (
+              <>
+                <p className='text-white/40 mb-7 sm:mb-8 text-sm max-w-md mx-auto leading-relaxed'>
+                  Welcome back, <span className='text-[#3be8ff]/70'>{userData.name}</span> !Continue building amazing components.
+                </p>
+                <div className='flex flex-col sm:flex-row justify-center gap-3'>
+                  <motion.button
+                    whileHover={{ y: -2, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex items-center justify-center gap-2 bg-[#3be8ff] text-[#030b0d] px-7 py-3.5
+                     rounded-xl font-semibold text-sm cursor-pointer border-none shadow-[0_0_30px_rgba(59,232,255,0.3)]
+                      hover:shadow-[0_0_40px_rgba(59,232,255,0.45)] transition-shadow"
+                  >
+                    <HiSparkles size={15} /> Generate AI Component
+                  </motion.button>
+
+                  <motion.button
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex items-center justify-center gap-2 px-7 py-3.5 border border-white/15
+                     rounded-xl text-sm text-white/60 hover:text-white hover:border-white/25 transition-all
+                     cursor-pointer bg-transparent"
+                  >
+                    <TbComponents size={16} className="text-[#3be8ff]/70" /> My Components
+                  </motion.button>
+                </div>
+              </>
+            ) : (
+              <>
+
+                <p className='text-white/40 mb-7 sm:mb-8 text-sm max-w-md mx-auto leading-relaxed'>
+                  Sign in with Google, get 150 free AI Credits, and start generating production-ready UI components instantly
+                </p>
+
+                <div className='flex flex-col sm:flex-row justify-center gap-3'>
+                  <motion.button
+                    onClick={() => setShowAuth(true)}
+                    whileHover={{ y: -2, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex items-center justify-center gap-2 bg-[#3be8ff] text-[#030b0d] px-7 py-3.5
+                     rounded-xl font-semibold text-sm cursor-pointer border-none shadow-[0_0_30px_rgba(59,232,255,0.3)]
+                      hover:shadow-[0_0_40px_rgba(59,232,255,0.45)] transition-shadow"
+                  >
+                    <HiSparkles size={15} /> Get Started Free
+                  </motion.button>
+
+                  <motion.button
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex items-center justify-center gap-2 px-7 py-3.5 border border-white/15
+                     rounded-xl text-sm text-white/60 hover:text-white hover:border-white/25 transition-all
+                     cursor-pointer bg-transparent"
+                  >
+                    <TbComponents size={16} className="text-[#3be8ff]/70" /> Components
+                  </motion.button>
+                </div>
+
+              </>
+            )}
+          </div>
+        </motion.div>
+      </section>
+
+
+      <footer className='border-t border-white/[0.05] py-8 sm:py-10'>
+        <div className='max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0'>
+          <div className='flex items-center gap-2.5'>
+            <div className='w-8 h-8 rounded-xl bg-gradient-to-br from-[#3be8ff] to-[#0ab5d4] flex items-center
+            justify-center shadow-[0_0_14px_rgba(59, 232, 255, 0.4)]'>
+              <SiValorant size={17} color='#051c20' />
+            </div>
+            <span className='text-lg font-bold tracking-tight' style={{ fontFamily: "'Syne', sans-serif" }}>
+              VirtualUI
+            </span>
+          </div>
+
+          <div className='flex flex-wrap justify-center gap-4 sm:gap-5 text-xs text-white/30'>
+            <span className='hover:text-white/60 transition-colors'>Components</span>
+            <span className='hover:text-white/60 transition-colors'>admin@virtualui.com</span>
+          </div>
+
+          <p className='text-xs text-white/25 order-last sm:order-none'>
+            ©{new Date().getFullYear()} VirtualUI. All rights reserved.
+          </p>
+        </div>
+      </footer>
 
 
 
