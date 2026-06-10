@@ -1,5 +1,5 @@
-import { Component } from "../models/component.model"
-import { User } from "../models/user.model"
+import { Component } from "../models/component.model.js"
+import { User } from "../models/user.model.js"
 import path from 'path'
 import fs from 'fs'
 import { execSync } from "child_process"

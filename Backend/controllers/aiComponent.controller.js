@@ -1,4 +1,4 @@
-import User from "../models/user.model.js"
+import {User} from "../models/user.model.js"
 import { askAI } from "../utils/OpenRouter.js" 
 
 export const generateComponent = async (req, res) => {
