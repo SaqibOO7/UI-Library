@@ -9,7 +9,7 @@ export const saveComponents = async (req, res) => {
     try {
         const { name, code, props } = req.body
 
-        const user = await Users.findById(req.userId)
+        const user = await User.findById(req.userId)
         if (!user) {
             return res.status(404).json({ message: "user is not found" })
         }
