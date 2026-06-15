@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Auth from '../components/Auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { SiValorant } from 'react-icons/si'
@@ -40,6 +40,12 @@ function Home() {
   const [copied, setCopied] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if(userData?.role === 'admin'){
+      navigate('/admin')
+    }
+  }, [userData])
 
   const getLetters = (name) => {
     if (!name) return 'U'
@@ -96,7 +102,9 @@ function Home() {
 
         <div className='hidden md:flex items-center gap-6 lg:gap-8 text-sm text-white/50'>
 
-          <button className='duration-200 px-6 py-2.5 border border-white/15 rounded-xl text-sm text-white/70
+          <button
+            onClick={() => navigate('/components')}
+            className='duration-200 px-6 py-2.5 border border-white/15 rounded-xl text-sm text-white/70
             hover:text-white hover:border-white transition-all cursor-pointer bg-transparent w-full'>
             components
           </button>
@@ -135,7 +143,7 @@ function Home() {
 
                     <div className='py-1.5'>
                       <button
-                        onClick={() => setProfileOpen(false)}
+                        onClick={() => { navigate('/my-components'); setProfileOpen(false) }}
                         className='w-full flex items-center gap-3 px-4 py-2.5 text-sm text-white/60 hover:text-white
                       hover:bg-white/[0.04] transition-colors cursor-pointer bg-transparent border-none text-left'>
 
@@ -196,7 +204,9 @@ function Home() {
               className='md:hidden sticky top-[65px] z-30 bg-[#030b0d]/95 backdrop-blur-md border-b
               border-white/[0.05] px-4 py-4 flex flex-col gap-3'
             >
-              <button className='duration-200 px-6 py-2.5 border border-white/15 rounded-xl text-sm text-white/70
+              <button
+                onClick={() => navigate('/components')}
+                className='duration-200 px-6 py-2.5 border border-white/15 rounded-xl text-sm text-white/70
             hover:text-white hover:border-white transition-all cursor-pointer bg-transparent w-full'>
                 Components
               </button>
@@ -212,7 +222,7 @@ function Home() {
                   </div>
 
                   <button
-                    onClick={() => setMenuOpen(false)}
+                    onClick={() => { navigate('/my-components'); setMenuOpen(false) }}
                     className='flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors
                   py-1 bg-transparent border-none cursor-pointer text-left'>
                     <TbComponents size={15} className='text-[#3be8ff]/70' /> My Components
@@ -310,6 +320,7 @@ function Home() {
           className='flex flex-col sm:flex-row justify-center gap-3 px-4 sm:px-0'
         >
           <motion.button
+            onClick={() => navigate('/components')}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.97 }}
             className='flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 bg-white text-[#030b0d] 
@@ -487,6 +498,7 @@ function Home() {
                 </p>
                 <div className='flex flex-col sm:flex-row justify-center gap-3'>
                   <motion.button
+                    onClick={() => navigate('/generate')}
                     whileHover={{ y: -2, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className="flex items-center justify-center gap-2 bg-[#3be8ff] text-[#030b0d] px-7 py-3.5
@@ -497,6 +509,7 @@ function Home() {
                   </motion.button>
 
                   <motion.button
+                  onClick={() => navigate('/my-components')}
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.98 }}
                     className="flex items-center justify-center gap-2 px-7 py-3.5 border border-white/15
@@ -527,6 +540,7 @@ function Home() {
                   </motion.button>
 
                   <motion.button
+                    onClick={() => navigate('/components')}
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.98 }}
                     className="flex items-center justify-center gap-2 px-7 py-3.5 border border-white/15
