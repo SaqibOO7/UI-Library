@@ -11,7 +11,7 @@ import {
   TbCheck, TbMenu2, TbLogout, TbComponents, TbX
 } from 'react-icons/tb'
 import { useNavigate } from 'react-router-dom'
-import { setUserData } from '../store/userSlice'
+import { setAllComponents, setAllUsers, setUserData } from '../store/userSlice'
 
 
 
@@ -55,7 +55,11 @@ function Home() {
   const handleLogout = async () => {
     try {
       await axios.get(serverUrl + "/api/v1/auth/logout", { withCredentials: true })
+
       dispatch(setUserData(null))
+      dispatch(setAllUsers([]))
+      dispatch(setAllComponents([]))
+      
       navigate('/')
 
     } catch (error) {

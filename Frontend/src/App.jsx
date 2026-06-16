@@ -4,7 +4,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import { useEffect } from 'react'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
-import { setUserData } from './store/userSlice'
+import { setAllComponents, setAllUsers, setUserData } from './store/userSlice'
 import Generate from './pages/Generate'
 import AdminDashboard from './pages/AdminDashboard'
 import AllComponents from './pages/AllComponents'
