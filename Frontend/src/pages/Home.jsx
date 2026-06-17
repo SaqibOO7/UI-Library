@@ -38,6 +38,7 @@ function Home() {
   const [profileOpen, setProfileOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [copied, setCopied] = useState(false)
+  
   const dispatch = useDispatch()
   const navigate = useNavigate()
 

@@ -23,10 +23,12 @@ const PORT = process.env.PORT
 import authRouter from './routes/auth.route.js'
 import userRouter from './routes/user.route.js'
 import componentRouter from './routes/component.route.js'
+import paymentRouter from './routes/payment.route.js'
 
 app.use("/api/v1/auth", authRouter)
 app.use("/api/v1/user", userRouter)
 app.use("/api/v1/component", componentRouter)
+app.use("/api/v1/payment", paymentRouter)
 
 
 

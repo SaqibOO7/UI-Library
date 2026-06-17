@@ -534,6 +534,7 @@ function Generate() {
                         </motion.button>
 
                         <motion.button
+                        onClick={() => navigate('/my-components')}
                           whileTap={{ scale: 0.97 }}
                           className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium
                           transition-all"
