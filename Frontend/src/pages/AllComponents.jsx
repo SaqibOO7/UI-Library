@@ -3,10 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import {
   TbCode, TbEye, TbBox, TbCopy, TbCheck,
   TbPackage, TbBrandNpm, TbChevronRight, TbSearch,
-  TbLayoutSidebarLeftExpand, TbX, TbMenu2
+  TbLayoutSidebarLeftExpand, TbX, TbMenu2, TbHexagon
 } from "react-icons/tb";
 import { HiSparkles } from "react-icons/hi2";
-import { SiValorant } from "react-icons/si";
 import { useSelector } from 'react-redux';
 import { AnimatePresence, motion } from 'motion/react'
 import {LiveComponentPreview} from '../components/LiveComponentPreview'
@@ -120,7 +119,7 @@ function GuidePanel() {
             <p className='text-xs text-white/40 mb-2 flex items-center gap-1.5'>
               <span className="text-[#3be8ff]/60 font-bold">03</span> Use in your App.jsx
             </p>
-            <CodeBlock code={`import { UserAvatar, PricingCard } from "virtual-ui-library";\n\nexport default function App() {\n  return (\n    <div>\n      <UserAvatar src="/user.png" />\n      <PricingCard title="Pro" price={99} />\n    </div>\n  );\n}`} lang='jsx' />
+            <CodeBlock code={`import { UserAvatar, PricingCard } from "custombuild-ui-library";\n\nexport default function App() {\n  return (\n    <div>\n      <UserAvatar src="/user.png" />\n      <PricingCard title="Pro" price={99} />\n    </div>\n  );\n}`} lang='jsx' />
           </div>
         </div>
         <p className="text-white/20 text-xs">
@@ -138,8 +137,8 @@ function DetailPanel({ component, onBack }) {
 
   const [activeTab, setActiveTab] = useState("preview");
 
-  const importCode = `import { ${component.name} } from "virtual-ui-library";`;
-  const usageCode = `import { ${component.name} } from "virtual-ui-library";\n\nexport default function App() {\n  return (\n    <div>\n      <${component.name}${component.props?.length
+  const importCode = `import { ${component.name} } from "custombuild-ui-library";`;
+  const usageCode = `import { ${component.name} } from "custombuild-ui-library";\n\nexport default function App() {\n  return (\n    <div>\n      <${component.name}${component.props?.length
     ? `\n        ${component.props.map((p) => `${p}={/* value */}`).join("\n        ")}`
     : ""
     } />\n    </div>\n  );\n}`;
@@ -276,7 +275,7 @@ function DetailPanel({ component, onBack }) {
                 <div>
                   <p className='text-xs font-semibold text-white/50 mb-3 flex items-center gap-2'>
                     <TbBrandNpm size={13} /> Install</p>
-                  <CodeBlock code={`npm install virtual-ui-library`} lang='bash' />
+                  <CodeBlock code={`npm install custombuild-ui-library`} lang='bash' />
                 </div>
 
                 <div>
@@ -394,10 +393,10 @@ function AllComponents() {
         >
           <div className='w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-br from-[#3be8ff] to-[#0ab5d4] flex
            items-center justify-center shadow-[0_0_14px_rgba(59,232,255,0.35)]'>
-            <SiValorant size={13} color="#051c20" />
+            <TbHexagon size={13} color="#051c20" />
           </div>
           <span className="text-sm sm:text-base font-bold text-white"
-            style={{ fontFamily: "'Syne',sans-serif" }}>VirtualUI</span>
+            style={{ fontFamily: "'Syne',sans-serif" }}>Strata</span>
 
         </button>
 

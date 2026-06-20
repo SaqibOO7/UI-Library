@@ -1,7 +1,7 @@
 {
   "name": "custombuild-ui-library",
   "version": "1.0.4",
-  "description": "Virtual UI React Component Library",
+  "description": "Strata React Component Library",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "exports": {

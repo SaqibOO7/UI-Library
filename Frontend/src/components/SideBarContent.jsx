@@ -2,7 +2,7 @@ import React from 'react'
 import {
     TbLogout, TbLayoutDashboard, TbPackage, TbChevronLeft,
 } from "react-icons/tb";
-import { SiValorant } from "react-icons/si";
+import { TbHexagon } from "react-icons/tb";
 import axios from 'axios'
 import { serverUrl } from '../App';
 import { useNavigate } from 'react-router-dom';
@@ -34,11 +34,11 @@ function SideBarContent({ activeView, setActiveView, setSidebarOpen }) {
             <div className='flex items-center gap-2.5 px-5 py-5 border-b border-white/[0.05]'>
                 <div className='w-8 h-8 rounded-xl bg-gradient-to-br from-[#3be8ff] to-[#0ab5d4] flex
                  items-center justify-center shadow-[0_0_14px_rgba(59,232,255,0.4)] flex-shrink-0'>
-                    <SiValorant size={15} color="#051c20" />
+                    <TbHexagon size={15} color="#051c20" />
                 </div>
                 <div className='flex items-center justify-between flex-1'>
                     <div>
-                        <span className='text-base font-bold block'>VirtualUI</span>
+                        <span className='text-base font-bold block'>Strata</span>
                         <span className='text-[10px] text-[#3be8ff]/60 font-semibold tracking-[2px] uppercase'>Admin</span>
                     </div>
                     {/* ✅ now uses prop setSidebarOpen instead of undefined local var */}

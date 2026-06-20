@@ -17,7 +17,7 @@ export const askAI = async (messages) => {
             {
                 headers: {
                     Authorization: `Bearer ${process.env.OPEN_ROUTER_API_KEY}`,
-                    'X-OpenRouter-Title': 'VirtualUI', // Optional. Site title for rankings on openrouter.ai.
+                    'X-OpenRouter-Title': 'Strata', // Optional. Site title for rankings on openrouter.ai.
                     'Content-Type': 'application/json',
                 }
             },

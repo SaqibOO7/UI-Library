@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence, easeInOut } from 'motion/react'
 import { TbCopy, TbDownload, TbLogin2, TbSettings, TbX } from 'react-icons/tb'
 import { HiSparkles } from 'react-icons/hi2'
-import { SiValorant } from 'react-icons/si'
+import { TbHexagon } from 'react-icons/tb'
 import { FcGoogle } from 'react-icons/fc'
 import {serverUrl} from '../App.jsx'
 import axios from 'axios'
@@ -84,10 +84,10 @@ function Auth({ onClose }) {
             >
               <div className='w-9 h-9 rounded-xl bg-gradient-to-br from-[#3be8ff] to-[#0ab5d4] flex items-center
               justify-center shadow-[0_0_18px_rgba(59, 232, 255, 0.35)]'>
-                <SiValorant size={17} color='#051c20' />
+                <TbHexagon size={17} color='#051c20' />
               </div>
               <span className='text-xl font-bold text-[#e8f8fa] tracking-tight' style={{ fontFamily: "'Syne', sans-serif" }}>
-                VirtualUI
+                Strata
               </span>
 
             </motion.div>
@@ -149,7 +149,7 @@ function Auth({ onClose }) {
                 className='w-12 h-12 sm:w-14 sm:h-14 rounded-2xl mx-auto mb-5 sm:mb-6 bg-gradient-to-br from-[#3be8ff]/15
               to-[#040f12] border border-[#3be9ff]/20 flex items-center justify-center'
               >
-                <SiValorant size={22} color='#3be8ff' />
+                <TbHexagon size={22} color='#3be8ff' />
               </motion.div>
               <h3 className='text-xl font-bold text-[#e4f6f8] tracking-tight mb-2'
                 style={{ fontFamily: "'Syne', sans-serif" }}>

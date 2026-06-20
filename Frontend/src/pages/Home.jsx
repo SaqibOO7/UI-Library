@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Auth from '../components/Auth'
 import { useDispatch, useSelector } from 'react-redux'
-import { SiValorant } from 'react-icons/si'
 import { AnimatePresence, motion } from 'motion/react'
 import { serverUrl } from '../App'
 import axios from 'axios'
 import { HiSparkles } from 'react-icons/hi2'
 import {
   TbArrowRight, TbBrandNpm, TbCode, TbLayout, TbAdjustments, TbPlayerPlay, TbCopy,
-  TbCheck, TbMenu2, TbLogout, TbComponents, TbX
+  TbCheck, TbMenu2, TbLogout, TbComponents, TbX, TbHexagon
 } from 'react-icons/tb'
 import { useNavigate } from 'react-router-dom'
 import { setAllComponents, setAllUsers, setUserData } from '../store/userSlice'
@@ -17,11 +16,11 @@ import { setAllComponents, setAllUsers, setUserData } from '../store/userSlice'
 
 
 const features = [
-  { icon: TbLayout, title: "Prebuilt UI Components", text: "Install VirtualUI and use ready-made, production-grade components instantly." },
+  { icon: TbLayout, title: "Prebuilt UI Components", text: "Install Strata and use ready-made, production-grade components instantly." },
   { icon: HiSparkles, title: "AI Component Generator", text: "Describe your UI in plain English and generate React components in seconds." },
   { icon: TbAdjustments, title: "Customizable Props", text: "Modify component props and preview changes in real-time without rebuilding." },
   { icon: TbCode, title: "Clean JSX Code", text: "Copy production-ready JSX directly into your project – zero boilerplate." },
-  { icon: TbBrandNpm, title: "NPM Library", text: "Import VirtualUI components with a simple npm install command." },
+  { icon: TbBrandNpm, title: "NPM Library", text: "Import Strata components with a simple npm install command." },
   { icon: TbPlayerPlay, title: "Live Preview", text: "Instantly preview AI-generated components before exporting your code." },
 ];
 
@@ -98,10 +97,10 @@ function Home() {
         <div className='flex items-center gap-2.5'>
           <div className='w-8 h-8 rounded-xl bg-gradient-to-br from-[#3be8ff] to-[#0ab5d4] flex items-center
             justify-center shadow-[0_0_14px_rgba(59, 232, 255, 0.4)]'>
-            <SiValorant size={17} color='#051c20' />
+            <TbHexagon size={17} color='#051c20' />
           </div>
           <span className='text-lg font-bold tracking-tight' style={{ fontFamily: "'Syne', sans-serif" }}>
-            VirtualUI
+            Strata
           </span>
         </div>
 
@@ -291,7 +290,7 @@ function Home() {
           transition={{ delay: 0.2, duration: 0.6 }}
           className='text-white/50 text-base sm:text-lg max-w-xl mx-auto leading-relaxed mb-8 sm:mb-10 font-light px-2'
         >
-          Use prebuilt VirtualUI components or genrate custom ones with AI.
+          Use prebuilt Strata components or genrate custom ones with AI.
           Copy clean JSX directly into your project in seconds.
         </motion.p>
 
@@ -568,20 +567,20 @@ function Home() {
           <div className='flex items-center gap-2.5'>
             <div className='w-8 h-8 rounded-xl bg-gradient-to-br from-[#3be8ff] to-[#0ab5d4] flex items-center
             justify-center shadow-[0_0_14px_rgba(59, 232, 255, 0.4)]'>
-              <SiValorant size={17} color='#051c20' />
+              <TbHexagon size={17} color='#051c20' />
             </div>
             <span className='text-lg font-bold tracking-tight' style={{ fontFamily: "'Syne', sans-serif" }}>
-              VirtualUI
+              Strata
             </span>
           </div>
 
           <div className='flex flex-wrap justify-center gap-4 sm:gap-5 text-xs text-white/30'>
             <span className='hover:text-white/60 transition-colors'>Components</span>
-            <span className='hover:text-white/60 transition-colors'>admin@virtualui.com</span>
+            <span className='hover:text-white/60 transition-colors'>admin@strata.com</span>
           </div>
 
           <p className='text-xs text-white/25 order-last sm:order-none'>
-            ©{new Date().getFullYear()} VirtualUI. All rights reserved.
+            ©{new Date().getFullYear()} Strata. All rights reserved.
           </p>
         </div>
       </footer>

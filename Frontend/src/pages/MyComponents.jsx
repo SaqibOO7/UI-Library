@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { TbLayoutSidebarLeftExpand, TbX, TbMenu2 } from "react-icons/tb";
-import { SiValorant } from "react-icons/si";
+import { TbHexagon } from "react-icons/tb";
 import { useSelector } from 'react-redux';
 import { AnimatePresence, motion } from 'motion/react'
 
@@ -41,10 +41,10 @@ function MyComponents() {
         >
           <div className='w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-br from-[#3be8ff] to-[#0ab5d4] flex
            items-center justify-center shadow-[0_0_14px_rgba(59,232,255,0.35)]'>
-            <SiValorant size={13} color="#051c20" />
+            <TbHexagon size={13} color="#051c20" />
           </div>
           <span className="text-sm sm:text-base font-bold text-white"
-            style={{ fontFamily: "'Syne',sans-serif" }}>VirtualUI</span>
+            style={{ fontFamily: "'Syne',sans-serif" }}>Strata</span>
         </button>
 
         <div className='flex items-center gap-2'>
