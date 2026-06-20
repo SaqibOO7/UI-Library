@@ -34,7 +34,7 @@ function AdminDashboard() {
     const publicComponents = allComponents?.filter((c) => c.visibility === 'public') || []
 
     const stats = [
-        { label: "Total Users", value: allUsers?.length || 0, icon: TbUsers, color: "#3be8ff" },
+        { label: "Total Users", value: (allUsers?.length - 1) || 0, icon: TbUsers, color: "#3be8ff" },
         { label: "Components Made", value: publicComponents?.length || 0, icon: TbCode, color: "#a78bfa" },
     ];
 

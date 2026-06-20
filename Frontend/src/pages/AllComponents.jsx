@@ -9,7 +9,7 @@ import { HiSparkles } from "react-icons/hi2";
 import { SiValorant } from "react-icons/si";
 import { useSelector } from 'react-redux';
 import { AnimatePresence, motion } from 'motion/react'
-import LiveComponentPreview from '../components/LiveComponentPreview'
+import {LiveComponentPreview} from '../components/LiveComponentPreview'
 
 
 function CopyBtn({ text }) {
@@ -68,7 +68,7 @@ function GuidePanel() {
         className='w-full'>
 
         <div className='w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#3be8ff]/[07] border border-[#3be8ff]/15 
-        flex items-center justify-cente mx-auto mb-5 sm:mb-6'>
+        flex items-center justify-center mx-auto mb-5 sm:mb-6'>
 
           <TbPackage size={24} className="text-[#3be8ff]/60" />
         </div>
