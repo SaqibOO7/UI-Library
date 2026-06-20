@@ -10,6 +10,9 @@ import AdminDashboard from './pages/AdminDashboard'
 import AllComponents from './pages/AllComponents'
 import MyComponents from './pages/MyComponents'
 import Pricing from './pages/Pricing'
+import SubmitForApproval from './pages/SubmitForApproval'
+import MySubmissions from './pages/MySubmissions'
+import AdminReview from './pages/AdminReview'
 
 export const serverUrl = 'http://localhost:8000'
 
@@ -22,6 +25,10 @@ const router = createBrowserRouter(
       <Route path='/components' element={<AllComponents />} />
       <Route path='/my-components' element={<MyComponents />} />
       <Route path='/pricing' element={<Pricing />} />
+
+      <Route path='/submit-for-approval' element={<SubmitForApproval />} />
+      <Route path='/my-submissions' element={<MySubmissions />} />
+      <Route path='/admin-review' element={<AdminReview />} />
     </Route>
   )
 )
@@ -82,11 +89,11 @@ function App() {
 
   return (
     <>
-    {
-      !authChecked && <div className='fixed top-0 left-0 w-full h-1 bg-[#35ebff] animate-pulse z-50'>
+      {
+        !authChecked && <div className='fixed top-0 left-0 w-full h-1 bg-[#35ebff] animate-pulse z-50'>
 
-      </div>
-    }
+        </div>
+      }
       <RouterProvider router={router}>
       </RouterProvider>
     </>
