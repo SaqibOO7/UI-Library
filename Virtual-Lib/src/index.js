@@ -11,3 +11,5 @@ export { PricingCard } from "./components/PricingCard/PricingCard.jsx";
 
 
 export { StatsWidget } from "./components/StatsWidget/StatsWidget.jsx";
+
+export { BeautifulNavbar } from "./components/BeautifulNavbar/BeautifulNavbar.jsx";

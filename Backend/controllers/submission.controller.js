@@ -1,5 +1,8 @@
 import { Component } from '../models/component.model.js'
 import { User } from '../models/user.model.js'
+import path from 'path'
+import fs from 'fs'
+import { execSync } from 'child_process'
 
 // 1. GET - Get user's draft components (for submit page)
 export const getUserComponents = async (req, res) => {
@@ -8,7 +11,7 @@ export const getUserComponents = async (req, res) => {
 
     const components = await Component.find({
       owner: userId,
-      status: { $in: ["draft", "rejected"] }  // Show draft and rejected components
+      status: { $in: ["draft", "rejected", "submitted", "approved"] }  // ✅ UPDATED - includes submitted and approved
     })
       .select("_id name code props status submissionDescription rejectionReason")
       .sort({ createdAt: -1 })
@@ -97,7 +100,100 @@ export const getPendingSubmissions = async (req, res) => {
   }
 }
 
-// 4. POST - Admin approves component
+// 4. POST - Publish component to npm (helper function)
+export const publishComponent = async (userId, componentId) => {
+  try {
+    const user = await User.findById(userId)
+    if (!user || user.role !== "admin") {
+      throw new Error("Only admin can publish")
+    }
+
+    const component = await Component.findById(componentId)
+    if (!component) {
+      throw new Error("Component not found")
+    }
+
+    // ✅ REMOVED OWNERSHIP CHECK - Admin can publish any component
+
+    // Doing the automation part going to the library folder
+    const libPath = path.join(process.cwd(), "../Virtual-Lib")
+
+    const componentDir = path.join(
+      libPath,
+      "src/components",
+      component.name
+    )
+
+    const componentFile = path.join(
+      componentDir,
+      `${component.name}.jsx`
+    )
+
+    const indexFile = path.join(libPath, "src/index.js")
+
+    // create component folder
+    if (!fs.existsSync(componentDir)) {
+      fs.mkdirSync(componentDir, { recursive: true })
+    }
+
+    // write component code
+    fs.writeFileSync(componentFile, component.code)
+
+    // read index file
+    let indexContent = fs.readFileSync(indexFile, "utf8")
+
+    const exportLine =
+      `export { ${component.name} } from "./components/${component.name}/${component.name}.jsx";`
+
+    // prevent duplicate export
+    if (!indexContent.includes(exportLine)) {
+      fs.appendFileSync(indexFile, `\n${exportLine}\n`)
+    }
+
+    // Clean old build
+    console.log("Cleaning old build...")
+    const distPath = path.join(libPath, "dist")
+
+    if (fs.existsSync(distPath)) {
+      fs.rmSync(distPath, { recursive: true, force: true })
+    }
+
+    // Build library
+    console.log("Building library...")
+    execSync("npm run build", {
+      cwd: libPath,
+      stdio: "inherit"
+    })
+
+    // Update version
+    console.log("Updating version...")
+    execSync("npm version patch --no-git-tag-version", {
+      cwd: libPath,
+      stdio: "inherit"
+    })
+
+    // Publish to npm
+    console.log("Publishing to npm...")
+    execSync("npm publish --access public", {
+      cwd: libPath,
+      stdio: "inherit"
+    })
+
+    component.npmPublished = true
+    component.npmPackage = "custombuild-ui-library"
+
+    await component.save()
+
+    console.log("Component published to npm successfully!")
+    return true
+
+  } catch (error) {
+    console.error("Error publishing component to npm:", error.message)
+    throw error
+  }
+}
+
+// 5. POST - Admin approves component (UPDATED with npm publish)
 export const approveComponent = async (req, res) => {
   try {
     const { componentId, reviewNotes } = req.body
@@ -134,7 +230,7 @@ export const approveComponent = async (req, res) => {
     }
 
     // Update component
-    component.status = "published"
+    component.status = "approved"
     component.visibility = "public"
     component.reviewedAt = new Date()
     component.reviewNotes = reviewNotes || ""
@@ -146,11 +242,28 @@ export const approveComponent = async (req, res) => {
     componentOwner.aiCredits += APPROVAL_CREDITS
     await componentOwner.save()
 
-    res.status(200).json({
-      message: `Component approved! User received ${APPROVAL_CREDITS} AI Credits`,
-      component,
-      userCredits: componentOwner.aiCredits
-    })
+    // ✅ PUBLISH TO NPM
+    try {
+      console.log(`Publishing component ${componentId} to npm...`)
+      await publishComponent(req.userId, componentId)
+
+      res.status(200).json({
+        message: `Component approved and published to npm! User received ${APPROVAL_CREDITS} AI Credits`,
+        component,
+        userCredits: componentOwner.aiCredits
+      })
+
+    } catch (publishError) {
+      console.error("Failed to publish to npm:", publishError.message)
+      
+      // ✅ Don't fail the approval if npm publish fails - still return success
+      res.status(200).json({
+        message: `Component approved! User received ${APPROVAL_CREDITS} AI Credits. (NPM publish will be retried)`,
+        component,
+        userCredits: componentOwner.aiCredits,
+        npmPublishError: publishError.message
+      })
+    }
 
   } catch (error) {
     console.error("Error approving component:", error)
@@ -158,7 +271,7 @@ export const approveComponent = async (req, res) => {
   }
 }
 
-// 5. POST - Admin rejects component
+// 6. POST - Admin rejects component
 export const rejectComponent = async (req, res) => {
   try {
     const { componentId, rejectionReason, reviewNotes } = req.body

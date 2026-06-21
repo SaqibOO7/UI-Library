@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-    TbLogout, TbLayoutDashboard, TbPackage, TbChevronLeft,
+    TbLogout, TbLayoutDashboard, TbPackage, TbChevronLeft, TbCheckupList
 } from "react-icons/tb";
 import { TbHexagon } from "react-icons/tb";
 import axios from 'axios'
@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../store/userSlice';
 
-// ✅ accepts activeView, setActiveView, setSidebarOpen as props (no local state)
+
 function SideBarContent({ activeView, setActiveView, setSidebarOpen }) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -27,6 +27,10 @@ function SideBarContent({ activeView, setActiveView, setSidebarOpen }) {
         } catch (error) {
             console.log(error)
         }
+    }
+
+    const handleReviewNavigation = () => {
+        navigate('/admin-review')  // Change to your actual route
     }
 
     return (
@@ -75,6 +79,15 @@ function SideBarContent({ activeView, setActiveView, setSidebarOpen }) {
                         </button>
                     )
                 })}
+
+                <button
+                    onClick={handleReviewNavigation}
+                    className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+                        font-medium transition-all bg-transparent border-none cursor-pointer text-left
+                        text-emerald-400/70 hover:text-emerald-400 hover:bg-emerald-500/[0.06]">
+                    <TbCheckupList size={16} />
+                    Review Submissions
+                </button>
             </nav>
 
             <div className='p-3 border-t border-white/[0.05]'>
